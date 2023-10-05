@@ -12,6 +12,7 @@ public class App {
                System.out.println("1.Cadastrar uma novo Aluno");
                System.out.println("2.Consultar Alunos");
                System.out.println("3.Cadastrar Professor");
+               System.out.println("4.Consultar Professor");
                System.out.println("9.Encerrar Programa");
 
                controler = ler.nextInt();
@@ -27,6 +28,9 @@ public class App {
                         Professor professor = new Professor();
                         professor.cadastrarProfessor(ler);
                         break;
+                    case 4:
+                        Professor.readProfessorFile();;
+                        break;    
                     case 9:
                          System.out.println("Programa Finalizado.");
                          System.exit(0); // Encerre o programa
