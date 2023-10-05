@@ -76,7 +76,10 @@ public class Professor{
             e.printStackTrace();
         }
     }
-    
+    /** Tabela csv Professor
+     * 0              ,1   ,2  ,3      |
+     * professor.nome ,CPF ,ID ,Salário|
+     */
     public static void readProfessorFile() throws IOException {
         
         System.out.println("--------------------------------");
@@ -95,7 +98,7 @@ public class Professor{
                 String professor = dados[0];
                 String salary = dados[3];
                 String idProfessor = dados[2];
-                System.out.println("Proessor" + idProfessor + ": \nNome:" + professor +"\nMatricula:" + salary + "\n--------------------------------");
+                System.out.println("Proessor" + idProfessor + ": \nNome: " + professor +"\nMatricula:" + salary + "\n--------------------------------");
 
             }
 

@@ -38,7 +38,7 @@ public class Estudante {
 
     private int getMatricula(Scanner sc){
         matricula = sc.nextInt();
-        if (matricula > 99999999) {
+        if (matricula > 99999999 && matricula < 10000000) {
             System.out.printf("\nA matricula digitada é invalida, digite outra");
             getMatricula(sc);
         }  
@@ -58,6 +58,10 @@ public class Estudante {
         File file = new File(fileName);
         return file.exists();
     }
+    /** Tabela csv Estudante
+     * 0    ,1   ,2        , 3      , 4        , 5      , 6      |
+     * nome ,CPF ,Matricula, Salário, NotaFinal, decimal, Passou |
+     */
     private void fileEstudante(){
                 try {
             String fileName = "lib/Estudante.csv";
