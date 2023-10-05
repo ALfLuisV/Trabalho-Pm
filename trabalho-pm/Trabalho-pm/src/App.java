@@ -10,6 +10,7 @@ public class App {
                System.out.println("==============================================================");
                System.out.println("\nInsira um valor para executar uma das seguintes ações:");
                System.out.println("1.Cadastrar uma novo Aluno");
+               System.out.println("2.Consultar Alunos2");
                System.out.println("9.Encerrar Programa");
 
                controler = ler.nextInt();
@@ -17,6 +18,9 @@ public class App {
                     case 1:
                         Estudante estudante = new Estudante(); // Cria uma instância da classe Client
                         estudante.cadastrarEstudante(ler);
+                        break;
+                    case 2:
+                        Estudante.readEstudanteFile();
                         break;
                     case 9:
                          System.out.println("Programa Finalizado.");
