@@ -13,7 +13,8 @@ public class App {
                System.out.println("2.Consultar Alunos");
                System.out.println("3.Cadastrar Professor");
                System.out.println("4.Consultar Professor");
-               System.out.println("5.Novo Trabalho");
+               System.out.println("5.Cadastrar Universidade");
+               System.out.println("6.Cadastrar Empresa");
                System.out.println("9.Encerrar Programa");
 
                controler = ler.nextInt();
@@ -31,11 +32,15 @@ public class App {
                         break;
                     case 4:
                         Professor.readProfessorFile();;
-                        break;
+                        break; 
                     case 5:
-                        Trabalho trabalho = new Trabalho();
-                        trabalho.novoTrablho(ler);
-                        break;   
+                    Universidade uni1 = new Universidade();
+                    uni1.cadastrarUni(); 
+                    break;
+                    case 6:
+                    Empresa emp1 = new Empresa();
+                    emp1.cadastrarEmp(); 
+                    break;   
                     case 9:
                          System.out.println("Programa Finalizado.");
                          System.exit(0); // Encerre o programa
