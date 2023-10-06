@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Estudante {
@@ -78,7 +79,7 @@ public class Estudante {
             e.printStackTrace();
         }
     }
-    public static void readEstudanteFile() throws IOException {
+    public static void readEstudanteFile(ArrayList<Estudante> arrayestu) throws IOException {
         
         System.out.println("--------------------------------");
         System.out.println("Estudantes Cadastrados:");
@@ -95,10 +96,16 @@ public class Estudante {
             while ((linha = bufferedLeitura.readLine()) != null) {
                 String[] dados = linha.split(",");
                 String estudante = dados[0];
+                String cpf = dados[1];
                 String matricula = dados[2];
+                int mat = Integer.parseInt(matricula); //convertendo string p/ int
                 String notaFinal = dados[3];
+                float nf = Float.parseFloat(notaFinal); //convertendo string p/ float
                 System.out.println("Estudante " + idEstudante + ": " + estudante +"\nMatricula: " + matricula + "\nNota Total: " + notaFinal + "\n--------------------------------");
                 idEstudante++;
+Pessoa p1 = new Pessoa(estudante, cpf);
+Estudante est1 = new Estudante(p1, mat, false, nf);
+arrayestu.add(est1);
             }
 
             bufferedLeitura.close();

@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Empresa extends Instituicao {
@@ -21,7 +22,7 @@ public class Empresa extends Instituicao {
 
 
 
-public void cadastrarEmp(){
+public void cadastrarEmp(ArrayList<Empresa> empre1){
 
 Scanner ler = new Scanner(System.in);
 String cnpj, nome, ramo;
@@ -36,8 +37,21 @@ ramo = ler.nextLine();
 System.out.println("Insira o numero de profissionais participantes da Empresa:");
 profs = ler.nextInt();
 Empresa emp1 = new Empresa(cnpj, nome, ramo, profs);
-emp1.fileEmpresa();
-ler.close();
+empre1.add(emp1);
+// ler.close();
+}
+
+
+public void showEmp(ArrayList<Empresa> empre1){
+    System.out.println("\n\n-------------Empresas Cadastradas:------------------");
+    for (Empresa emp : empre1) {
+        System.out.println("\n\n-------------------------------");
+        System.out.println("CNPJ: " + emp.cnpjInst);
+        System.out.println("Nome: " + emp.nomeInst);
+        System.out.println("Ramo da empresa: " + emp.ramo);
+        System.out.println("Numero de profissionais: " + emp.numProfissionais);
+        System.out.println("-------------------------------");
+}
 }
 
 
@@ -45,27 +59,49 @@ ler.close();
 
 
 
- public boolean fileExists(String fileName) {
-        File file = new File(fileName);
-        return file.exists();
-}
 
-public void fileEmpresa(){
-                try {
-            String fileName = "Empresas.csv";
-            boolean fileExists = fileExists(fileName);
 
-            FileWriter writer = new FileWriter(fileName, true);
-            String empData = String.format("%s, %s, %s, %d\n", this.cnpjInst, this.nomeInst, this.ramo, this.numProfissionais);
 
-            writer.write(empData);
-            writer.close();
 
-        } catch (IOException e) {
-            System.err.println("Erro ao adicionar empresa ao arquivo.");
-            e.printStackTrace();
-        }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  public boolean fileExists(String fileName) {
+//         File file = new File(fileName);
+//         return file.exists();
+// }
+
+// public void fileEmpresa(){
+//                 try {
+//             String fileName = "Empresas.csv";
+//             boolean fileExists = fileExists(fileName);
+
+//             FileWriter writer = new FileWriter(fileName, true);
+//             String empData = String.format("%s, %s, %s, %d\n", this.cnpjInst, this.nomeInst, this.ramo, this.numProfissionais);
+
+//             writer.write(empData);
+//             writer.close();
+
+//         } catch (IOException e) {
+//             System.err.println("Erro ao adicionar empresa ao arquivo.");
+//             e.printStackTrace();
+//         }
+// }
 
 
 

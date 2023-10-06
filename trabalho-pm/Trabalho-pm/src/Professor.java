@@ -3,25 +3,27 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Professor{
+public class Professor {
     int id;
     float salary;
     Pessoa pessoa;
 
-    public Professor(){
+    public Professor() {
         this.pessoa = new Pessoa("", "");
         this.id = 0;
         this.salary = 0;
     }
 
-    public Professor(Pessoa pessoa, int id, float salary){
+    public Professor(Pessoa pessoa, int id, float salary) {
         this.pessoa = pessoa;
         this.id = id;
         this.salary = salary;
     }
-    public void cadastrarProfessor(Scanner sc){
+
+    public void cadastrarProfessor(Scanner sc) {
         this.pessoa = Pessoa.cadastrarPessoa(sc);
         System.out.println("Insira o Salário do Professor");
         this.salary = sc.nextFloat();
@@ -30,7 +32,7 @@ public class Professor{
         this.fileProfessor();
     }
 
-    private int setId(){
+    private int setId() {
         int currentId = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader("lib/Professor.csv"))) {
@@ -47,7 +49,7 @@ public class Professor{
         return currentId + 1;
     }
 
-    private void showProfessor(){
+    private void showProfessor() {
         System.out.printf("-----------------------------------\n");
         System.out.printf("Aluno Cadastrado:\n");
         System.out.printf("Nome: %s\n", this.pessoa.nome);
@@ -60,13 +62,15 @@ public class Professor{
         File file = new File(fileName);
         return file.exists();
     }
-    private void fileProfessor(){
-                try {
+
+    private void fileProfessor() {
+        try {
             String fileName = "lib/Professor.csv";
             boolean fileExists = fileExists(fileName);
 
             FileWriter writer = new FileWriter(fileName, true);
-            String professorData = String.format("%s, %s, %d, %.2f \n", this.pessoa.nome, this.pessoa.cpf, this.id, this.salary);
+            String professorData = String.format("%s, %s, %d, %.2f \n", this.pessoa.nome, this.pessoa.cpf, this.id,
+                    this.salary);
 
             writer.write(professorData);
             writer.close();
@@ -76,12 +80,14 @@ public class Professor{
             e.printStackTrace();
         }
     }
-    /** Tabela csv Professor
-     * 0              ,1   ,2  ,3      |
+
+    /**
+     * Tabela csv Professor
+     * 0 ,1 ,2 ,3 |
      * professor.nome ,CPF ,ID ,Salário|
      */
-    public static void readProfessorFile() throws IOException {
-        
+    public static void readProfessorFile(ArrayList<Professor> arrayprof) throws IOException {
+
         System.out.println("--------------------------------");
         System.out.println("Professsor Cadastrados:");
         System.out.println("--------------------------------");
@@ -96,10 +102,16 @@ public class Professor{
             while ((linha = bufferedLeitura.readLine()) != null) {
                 String[] dados = linha.split(",");
                 String professor = dados[0];
+                String cpf = dados[1];
                 String salary = dados[3];
                 String idProfessor = dados[2];
-                System.out.println("Proessor" + idProfessor + ": \nNome: " + professor +"\nMatricula:" + salary + "\n--------------------------------");
-
+                int idProf = Integer.parseInt(idProfessor);// convertendo string p/ int
+                Float salaryProf = Float.parseFloat(salary);// convertendo string p/ float
+                System.out.println("Proessor" + idProfessor + ": \nNome: " + professor + "\nMatricula:" + salary
+                        + "\n--------------------------------");
+                Pessoa p1 = new Pessoa(professor, cpf);
+                Professor prof1 = new Professor(p1, idProf, salaryProf);
+                arrayprof.add(prof1);
             }
 
             bufferedLeitura.close();
